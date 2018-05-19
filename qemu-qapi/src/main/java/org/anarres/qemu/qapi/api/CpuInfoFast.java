@@ -416,7 +416,7 @@ public class CpuInfoFast extends CpuInfoFastBase implements QApiUnion {
 	@Nonnull
 	public static CpuInfoFast x8664(@Nonnull CpuInfoOther x8664) {
 		CpuInfoFast self = new CpuInfoFast();
-		self.target = SysEmuTarget.x8664;
+		self.target = SysEmuTarget.x86_64;
 		self.x8664 = x8664;
 		return self;
 	}
