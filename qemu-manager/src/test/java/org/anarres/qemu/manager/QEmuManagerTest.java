@@ -58,7 +58,8 @@ public class QEmuManagerTest {
                                 file.getAbsolutePath(),
                                 null,
                                 OnOffAuto.auto,
-                                BlockdevAioOptions._native));
+                                BlockdevAioOptions._native,
+                                null));
                 options.withReadOnly(true);
                 options.withNodeName("test-file-node");
                 options.withCache(new BlockdevCacheOptions().withDirect(true));
