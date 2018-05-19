@@ -50,7 +50,11 @@ public class $element.className extends #{if} ($element.superClassName)$element.
 		self.type = Discriminator.${field.underscoreName};
 #end
 #if ($element.fieldDiscriminated)
+#if ($element.discriminatorField.isEnumType())
+		self.${element.discriminatorField.name} = ${element.discriminatorField.typeName}.${field.enumName};
+#else
 		self.${element.discriminatorField.name} = ${element.discriminatorField.typeName}.${field.underscoreName};
+#end
 #end
 		self.${field.name} = $field.name;
 		return self;

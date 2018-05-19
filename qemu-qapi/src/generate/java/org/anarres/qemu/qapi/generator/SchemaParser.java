@@ -133,6 +133,12 @@ public class SchemaParser {
                             element.getName() + "Base");
                     model.elements.put(parentElement.getName(), parentElement);
                 }
+
+                if (element instanceof QApiEnumDescriptor) {
+                    // Keep track of all the enum types.
+                    QApiEnumDescriptor.ALL_ENUMS.add(element.getName());
+                }
+
                 // LOG.info("Read specific " + element);
             }
 

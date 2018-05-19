@@ -7,7 +7,9 @@ package org.anarres.qemu.qapi.generator.model;
 import com.google.common.base.Objects;
 import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.annotation.Nonnull;
 
 /**
@@ -15,6 +17,9 @@ import javax.annotation.Nonnull;
  * @author shevek
  */
 public class QApiEnumDescriptor extends QApiElementDescriptor {
+
+    /** Save a record of all the enum types after we convert them to Java class names. */
+    public static final Set<String> ALL_ENUMS = new HashSet<>();
 
     public static class Field {
 

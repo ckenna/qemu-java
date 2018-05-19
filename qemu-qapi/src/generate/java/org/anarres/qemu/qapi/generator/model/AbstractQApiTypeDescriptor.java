@@ -25,6 +25,10 @@ public abstract class AbstractQApiTypeDescriptor extends QApiElementDescriptor {
         public String typeName;
         public String name;
         public String serializedName;
+        /**
+         * Enum field "name"s convert to Java names differently. Save that conversion, too.
+         */
+        public String enumName;
         public boolean optional;
 
         public String getAnnotations() {
@@ -35,12 +39,29 @@ public abstract class AbstractQApiTypeDescriptor extends QApiElementDescriptor {
             return typeName;
         }
 
+        /**
+         * @return Whether this field is an enum type.
+         */
+        public boolean isEnumType() {
+            return QApiEnumDescriptor.ALL_ENUMS.contains(getTypeName());
+        }
+
+        public String getAllThem() {
+            StringBuilder b = new StringBuilder();
+            QApiEnumDescriptor.ALL_ENUMS.forEach(s -> {b.append(s);b.append(" ");});
+            return b.toString();
+        }
+
         public String getTypeNameWrapped() {
             return toWrappedJavaType(getTypeName());
         }
 
         public String getName() {
             return name;
+        }
+
+        public String getEnumName() {
+            return enumName;
         }
 
         public String getCapName() {
@@ -96,6 +117,7 @@ public abstract class AbstractQApiTypeDescriptor extends QApiElementDescriptor {
                     field.annotations = "@Nonnull";
                 }
                 field.serializedName = field.name;
+                field.enumName = toJavaEnumName(field.name);
                 field.name = toJavaName(field.name);
 
                 if (e.getValue() instanceof Map) {
